@@ -89,7 +89,7 @@ public class VoiceCommandReceiver extends BroadcastReceiver {
                     Log.e(mMainActivity.LOG_TAG, mMainActivity.getMethodName() + " \"" + phrase + "\"");
 
                     if (phrase.equals(MATCH_NEXT)) {
-                        mMainActivity.goToItemsActivity();
+                        // todo: next fragment
                     } else {
                         Log.e(mMainActivity.LOG_TAG, "Phrase not handled");
                     }
@@ -101,17 +101,4 @@ public class VoiceCommandReceiver extends BroadcastReceiver {
         }
     }
 
-    /**
-     * Handler called when "Listen" button is clicked. Activates the speech recognizer identically to
-     * saying "Hello Vuzix"
-     *
-     * @param bOnOrOff boolean True to enable listening, false to cancel it
-     */
-    public void TriggerRecognizerToListen(boolean bOnOrOff) {
-        try {
-            VuzixSpeechClient.TriggerVoiceAudio(mMainActivity, bOnOrOff);
-        } catch (NoClassDefFoundError e) {
-            Toast.makeText(mMainActivity, R.string.upgrade_vuzix, Toast.LENGTH_LONG).show();
-        }
-    }
 }
