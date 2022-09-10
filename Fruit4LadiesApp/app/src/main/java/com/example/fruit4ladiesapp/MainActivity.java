@@ -13,6 +13,7 @@ public class MainActivity extends AppCompatActivity {
     public final String CUSTOM_SDK_INTENT = "com.vuzix.sample.vuzix_voicecontrolwithsdk.CustomIntent";
     public static final String EXTRA_MESSAGE = "com.example.myfirstapp.MESSAGE";
     private boolean recognizerActive = false;
+
     VoiceCommandReceiver voiceCommandReceiver;
 
     @Override
@@ -21,9 +22,16 @@ public class MainActivity extends AppCompatActivity {
         setContentView(R.layout.activity_main);
     }
 
-    public void goToItemsActivity(View view) {
+    public void onNextClick(View view){
+        goToItemsActivity();
+    }
+    public void goToItemsActivity() {
         Intent intent = new Intent(this, Items.class);
         intent.putExtra(EXTRA_MESSAGE, "test");
         startActivity(intent);
+    }
+
+    public String getMethodName() {
+        return LOG_TAG + ":" + this.getClass().getSimpleName() + "." + new Throwable().getStackTrace()[1].getMethodName();
     }
 }

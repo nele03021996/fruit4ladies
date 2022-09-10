@@ -4,6 +4,7 @@ import android.content.BroadcastReceiver;
 import android.content.Context;
 import android.content.Intent;
 import android.content.IntentFilter;
+import android.os.Bundle;
 import android.util.Log;
 import android.view.KeyEvent;
 import android.widget.Toast;
@@ -12,7 +13,7 @@ import com.vuzix.sdk.speechrecognitionservice.VuzixSpeechClient;
 
 public class VoiceCommandReceiver extends BroadcastReceiver {
     private MainActivity mMainActivity;
-    final String MATCH_EDIT_TEXT = "edit_text_pressed"; // 17 char
+    final String MATCH_NEXT = "next";
 
     public VoiceCommandReceiver(MainActivity iActivity)
     {
@@ -21,7 +22,6 @@ public class VoiceCommandReceiver extends BroadcastReceiver {
         Log.d(mMainActivity.LOG_TAG, "Connecting to Vuzix Speech SDK");
 
         try {
-            // Create a VuzixSpeechClient from the SDK
             VuzixSpeechClient sc = new VuzixSpeechClient(iActivity);
             // Delete specific phrases. This is useful if there are some that sound similar to yours, but
             // you want to keep the majority of them intact
@@ -55,45 +55,7 @@ public class VoiceCommandReceiver extends BroadcastReceiver {
                 Log.i(mMainActivity.LOG_TAG, "Setting voice off is not supported. It is introduced in M300 v1.6.6, Blade v2.6, and M400 v1.0.0");
             }
 
-            // Now add any new strings.  If you put a substitution in the second argument, you will be passed that string instead of the full string
-            sc.insertKeycodePhrase("Alfa", KeyEvent.KEYCODE_A );
-            sc.insertKeycodePhrase("Bravo", KeyEvent.KEYCODE_B);
-            sc.insertKeycodePhrase("Charlie", KeyEvent.KEYCODE_C);
-            sc.insertKeycodePhrase("Delta", KeyEvent.KEYCODE_D);
-            sc.insertKeycodePhrase("Echo", KeyEvent.KEYCODE_E);
-            sc.insertKeycodePhrase("Foxtrot", KeyEvent.KEYCODE_F);
-            sc.insertKeycodePhrase("Golf", KeyEvent.KEYCODE_G);
-            sc.insertKeycodePhrase("Hotel", KeyEvent.KEYCODE_H);
-            sc.insertKeycodePhrase("India", KeyEvent.KEYCODE_I);
-            sc.insertKeycodePhrase("Juliett", KeyEvent.KEYCODE_J);
-            sc.insertKeycodePhrase("Kilo", KeyEvent.KEYCODE_K);
-            sc.insertKeycodePhrase("Lima", KeyEvent.KEYCODE_L);
-            sc.insertKeycodePhrase("Mike", KeyEvent.KEYCODE_M);
-            sc.insertKeycodePhrase("November", KeyEvent.KEYCODE_N);
-            sc.insertKeycodePhrase("Oscar", KeyEvent.KEYCODE_O);
-            sc.insertKeycodePhrase("Papa", KeyEvent.KEYCODE_P);
-            sc.insertKeycodePhrase("Quebec", KeyEvent.KEYCODE_Q);
-            sc.insertKeycodePhrase("Romeo", KeyEvent.KEYCODE_R);
-            sc.insertKeycodePhrase("Sierra", KeyEvent.KEYCODE_S);
-            sc.insertKeycodePhrase("Tango", KeyEvent.KEYCODE_T);
-            sc.insertKeycodePhrase("Uniform", KeyEvent.KEYCODE_U);
-            sc.insertKeycodePhrase("Victor", KeyEvent.KEYCODE_V);
-            sc.insertKeycodePhrase("Whiskey", KeyEvent.KEYCODE_W);
-            sc.insertKeycodePhrase("X-Ray", KeyEvent.KEYCODE_X);
-            sc.insertKeycodePhrase("Yankee", KeyEvent.KEYCODE_Y);
-            sc.insertKeycodePhrase("Zulu", KeyEvent.KEYCODE_Z);
-            // Misc
-            sc.insertKeycodePhrase("Space", KeyEvent.KEYCODE_SPACE);
-            sc.insertKeycodePhrase("shift", KeyEvent.KEYCODE_SHIFT_LEFT);
-            sc.insertKeycodePhrase("caps lock", KeyEvent.KEYCODE_CAPS_LOCK);
-            sc.insertKeycodePhrase("at sign", KeyEvent.KEYCODE_AT);
-            sc.insertKeycodePhrase("period", KeyEvent.KEYCODE_PERIOD);
-            sc.insertKeycodePhrase("erase", KeyEvent.KEYCODE_DEL);
-            sc.insertKeycodePhrase("enter", KeyEvent.KEYCODE_ENTER);
-
-
-
-            sc.insertPhrase("Edit Text", MATCH_EDIT_TEXT);
+            sc.insertPhrase("next", MATCH_NEXT);
 
 
             // See what we've done
@@ -118,6 +80,25 @@ public class VoiceCommandReceiver extends BroadcastReceiver {
 
     @Override
     public void onReceive(Context context, Intent intent) {
+        Log.e(mMainActivity.LOG_TAG, mMainActivity.getMethodName());
 
+        if (intent.getAction().equals(VuzixSpeechClient.ACTION_VOICE_COMMAND)) {
+            Bundle extras = intent.getExtras();
+            if (extras != null) {
+                if (extras.containsKey(VuzixSpeechClient.PHRASE_STRING_EXTRA)) {
+                    String phrase = intent.getStringExtra(VuzixSpeechClient.PHRASE_STRING_EXTRA);
+                    Log.e(mMainActivity.LOG_TAG, mMainActivity.getMethodName() + " \"" + phrase + "\"");
+
+                    if (phrase.equals(MATCH_NEXT)) {
+                        mMainActivity.goToItemsActivity();
+                    } else {
+                        Log.e(mMainActivity.LOG_TAG, "Phrase not handled");
+                    }
+                }
+            }
+        }
+        else {
+            Log.e(mMainActivity.LOG_TAG, "Other Intent not handled " + intent.getAction() );
+        }
     }
 }
