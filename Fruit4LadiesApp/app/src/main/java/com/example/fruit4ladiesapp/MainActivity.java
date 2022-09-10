@@ -14,10 +14,8 @@ import org.json.JSONObject;
 
 import java.io.IOException;
 import java.io.InputStream;
-import java.lang.reflect.Array;
 import java.util.Arrays;
 
-//import com.google.gson.Gson;
 
 public class MainActivity extends AppCompatActivity {
     public final String LOG_TAG = "VoiceSample";
