@@ -35,6 +35,10 @@ public class MainActivity extends AppCompatActivity {
         loadFragment(new PackagingFragment());
     }
 
+    public void nextItem(View view) {
+        loadFragment(new ItemFragment());
+    }
+
     void loadFragment(Fruit4LadiesFragment fragment) {
         voiceCommandReceiver.resetCommands();
         voiceCommandReceiver.registerCommands(fragment.getCommands());
