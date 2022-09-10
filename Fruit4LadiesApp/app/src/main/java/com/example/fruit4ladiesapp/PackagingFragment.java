@@ -3,6 +3,7 @@ package com.example.fruit4ladiesapp;
 import android.os.Bundle;
 
 import androidx.fragment.app.Fragment;
+import androidx.navigation.NavDirections;
 
 import android.view.LayoutInflater;
 import android.view.View;
@@ -50,8 +51,9 @@ public class PackagingFragment extends Fruit4LadiesFragment {
     }
 
     @Override
-    public void onCreate(Bundle savedInstanceState) {
-        super.onCreate(savedInstanceState);
+    public void onViewCreated(View view, Bundle savedInstanceState) {
+        super.onViewCreated(view, savedInstanceState);
+        ((Fruit4LadiesApplication)getActivity().getApplicationContext()).getVoiceCommandReceiver().registerCommands(getCommands());
         if (getArguments() != null) {
             mParam1 = getArguments().getString(ARG_PARAM1);
             mParam2 = getArguments().getString(ARG_PARAM2);
@@ -67,5 +69,10 @@ public class PackagingFragment extends Fruit4LadiesFragment {
 
     public List<Commands> getCommands() {
         return Arrays.asList(Commands.MATCH_NEXT);
+    }
+
+    @Override
+    public NavDirections getAction() {
+        return PackagingFragmentDirections.actionPackagingFragment2ToItemFragment();
     }
 }

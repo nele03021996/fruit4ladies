@@ -6,6 +6,7 @@ import android.view.View;
 import android.view.ViewGroup;
 
 import androidx.fragment.app.Fragment;
+import androidx.navigation.NavDirections;
 
 import java.util.Arrays;
 import java.util.List;
@@ -49,8 +50,9 @@ public class ItemFragment extends Fruit4LadiesFragment {
     }
 
     @Override
-    public void onCreate(Bundle savedInstanceState) {
-        super.onCreate(savedInstanceState);
+    public void onViewCreated(View view, Bundle savedInstanceState) {
+        super.onViewCreated(view, savedInstanceState);
+        ((Fruit4LadiesApplication)getActivity().getApplicationContext()).getVoiceCommandReceiver().registerCommands(getCommands());
         if (getArguments() != null) {
             mParam1 = getArguments().getString(ARG_PARAM1);
             mParam2 = getArguments().getString(ARG_PARAM2);
@@ -65,6 +67,17 @@ public class ItemFragment extends Fruit4LadiesFragment {
     }
 
     public List<Commands> getCommands() {
-        return Arrays.asList(Commands.MATCH_START);
+        return Arrays.asList(Commands.MATCH_NEXT);
+    }
+
+    @Override
+    public NavDirections getAction() {
+        return ItemFragmentDirections.actionItemFragmentToItemFragment();
+    }
+
+    @Override
+    public void onResume() {
+
+        super.onResume();
     }
 }

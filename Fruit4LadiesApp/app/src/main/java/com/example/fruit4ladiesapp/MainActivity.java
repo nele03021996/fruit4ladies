@@ -12,20 +12,20 @@ import java.util.Arrays;
 
 public class MainActivity extends AppCompatActivity {
     public final String LOG_TAG = "VoiceSample";
-    VoiceCommandReceiver voiceCommandReceiver;
     NavController navController;
+    NavHostFragment navHostFragment;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
-        voiceCommandReceiver = new VoiceCommandReceiver(this);
+        VoiceCommandReceiver voiceCommandReceiver = new VoiceCommandReceiver(this);
         voiceCommandReceiver.registerCommands(Arrays.asList(Commands.MATCH_START));
+        ((Fruit4LadiesApplication)getApplicationContext()).setVoiceCommandReceiver(voiceCommandReceiver);
 
-        NavHostFragment navHostFragment = (NavHostFragment) getSupportFragmentManager().findFragmentById(R.id.nav_host_fragment);
+        navHostFragment = (NavHostFragment) getSupportFragmentManager().findFragmentById(R.id.nav_host_fragment);
         navController = navHostFragment.getNavController();
-
     }
 
     public String getMethodName() {
@@ -33,18 +33,17 @@ public class MainActivity extends AppCompatActivity {
     }
 
     public void start(View view) {
-        loadFragment(new PackagingFragment());
+        loadFragment();
     }
 
     public void nextItem(View view) {
-        loadFragment(new ItemFragment());
+        loadFragment();
     }
 
-    void loadFragment(Fruit4LadiesFragment fragment) {
-        voiceCommandReceiver.resetCommands();
-        voiceCommandReceiver.registerCommands(fragment.getCommands());
-
-        navController.navigate(StartFragmentDirections.actionStartFragment2ToPackagingFragment2());
+    void loadFragment() {
+        ((Fruit4LadiesApplication)getApplicationContext()).getVoiceCommandReceiver().resetCommands();
+        Fruit4LadiesFragment fragment = (Fruit4LadiesFragment)navHostFragment.getChildFragmentManager().getFragments().get(0);
+        navController.navigate(fragment.getAction());
 
 // OLD
 //        FragmentTransaction ft = supportedFragmentManager.beginTransaction();

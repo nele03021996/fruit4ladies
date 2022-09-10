@@ -101,9 +101,9 @@ public class VoiceCommandReceiver extends BroadcastReceiver {
                     Log.e(mMainActivity.LOG_TAG, mMainActivity.getMethodName() + " \"" + phrase + "\"");
 
                     if (phrase.equals(Commands.MATCH_START.getCommand())) {
-                        mMainActivity.loadFragment(new PackagingFragment());
+                        mMainActivity.loadFragment();
                     } else if (phrase.equals(Commands.MATCH_NEXT.getCommand())) {
-                        mMainActivity.loadFragment(new StartFragment());
+                        mMainActivity.loadFragment();
                     }
                     else {
                         Log.e(mMainActivity.LOG_TAG, "Phrase not handled");

@@ -3,6 +3,7 @@ package com.example.fruit4ladiesapp;
 import android.os.Bundle;
 
 import androidx.fragment.app.Fragment;
+import androidx.navigation.NavDirections;
 
 import android.view.LayoutInflater;
 import android.view.View;
@@ -18,6 +19,7 @@ import java.util.List;
  * create an instance of this fragment.
  */
 public class StartFragment extends Fruit4LadiesFragment {
+    private int i = 0;
 
     // TODO: Rename parameter arguments, choose names that match
     // the fragment initialization parameters, e.g. ARG_ITEM_NUMBER
@@ -51,13 +53,16 @@ public class StartFragment extends Fruit4LadiesFragment {
     }
 
     @Override
-    public void onCreate(Bundle savedInstanceState) {
-        super.onCreate(savedInstanceState);
+    public void onViewCreated(View view, Bundle savedInstanceState) {
+        super.onViewCreated(view, savedInstanceState);
+        ((Fruit4LadiesApplication)getActivity().getApplicationContext()).getVoiceCommandReceiver().registerCommands(getCommands());
         if (getArguments() != null) {
             mParam1 = getArguments().getString(ARG_PARAM1);
             mParam2 = getArguments().getString(ARG_PARAM2);
         }
     }
+
+
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
@@ -68,5 +73,10 @@ public class StartFragment extends Fruit4LadiesFragment {
 
     public List<Commands> getCommands() {
         return Arrays.asList(Commands.MATCH_START);
+    }
+
+    @Override
+    public NavDirections getAction() {
+        return StartFragmentDirections.actionStartFragment2ToPackagingFragment2();
     }
 }

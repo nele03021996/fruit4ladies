@@ -26,5 +26,12 @@
         android:id="@+id/itemFragment"
         android:name="com.example.fruit4ladiesapp.ItemFragment"
         android:label="fragment_item"
-        tools:layout="@layout/fragment_item" />
+        tools:layout="@layout/fragment_item" >
+        <action
+            android:id="@+id/action_itemFragment_to_itemFragment"
+            app:destination="@id/itemFragment" />
+        <action
+            android:id="@+id/action_itemFragment_to_startFragment"
+            app:destination="@id/startFragment2" />
+    </fragment>
 </navigation>
