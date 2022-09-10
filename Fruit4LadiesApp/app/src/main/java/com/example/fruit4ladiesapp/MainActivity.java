@@ -12,18 +12,20 @@ import java.util.Arrays;
 
 public class MainActivity extends AppCompatActivity {
     public final String LOG_TAG = "VoiceSample";
-    public static final String EXTRA_MESSAGE = "com.example.fruit4ladiesapp.MESSAGE";
-
     VoiceCommandReceiver voiceCommandReceiver;
+    NavController navController;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
-        // Create the voice command receiver class
         voiceCommandReceiver = new VoiceCommandReceiver(this);
         voiceCommandReceiver.registerCommands(Arrays.asList(Commands.MATCH_START));
+
+        NavHostFragment navHostFragment = (NavHostFragment) getSupportFragmentManager().findFragmentById(R.id.nav_host_fragment);
+        navController = navHostFragment.getNavController();
+
     }
 
     public String getMethodName() {
@@ -42,10 +44,7 @@ public class MainActivity extends AppCompatActivity {
         voiceCommandReceiver.resetCommands();
         voiceCommandReceiver.registerCommands(fragment.getCommands());
 
-        FragmentManager supportedFragmentManager = getSupportFragmentManager();
-        NavHostFragment navHostFragment =
-                (NavHostFragment) supportedFragmentManager.findFragmentById(R.id.nav_host_fragment);
-        NavController navController = navHostFragment.getNavController();
+        navController.navigate(StartFragmentDirections.actionStartFragment2ToPackagingFragment2());
 
 // OLD
 //        FragmentTransaction ft = supportedFragmentManager.beginTransaction();
