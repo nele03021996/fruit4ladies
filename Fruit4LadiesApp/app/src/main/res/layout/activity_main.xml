@@ -54,12 +54,6 @@
 <!--            android:text="CC: please take the large pears"-->
 <!--            android:textSize="48sp" />-->
 
-        <Button
-            android:id="@+id/button"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:onClick="next"
-            android:text="Next" />
     </LinearLayout>
 
 </androidx.constraintlayout.widget.ConstraintLayout>
