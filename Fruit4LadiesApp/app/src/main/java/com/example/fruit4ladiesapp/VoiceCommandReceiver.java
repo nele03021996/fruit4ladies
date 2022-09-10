@@ -10,9 +10,12 @@ import android.widget.Toast;
 
 import com.vuzix.sdk.speechrecognitionservice.VuzixSpeechClient;
 
+import java.util.List;
+
 public class VoiceCommandReceiver extends BroadcastReceiver {
     private MainActivity mMainActivity;
-    final String MATCH_NEXT = "next";
+    private VuzixSpeechClient sc;
+
 
     public VoiceCommandReceiver(MainActivity iActivity)
     {
@@ -21,7 +24,7 @@ public class VoiceCommandReceiver extends BroadcastReceiver {
         Log.d(mMainActivity.LOG_TAG, "Connecting to Vuzix Speech SDK");
 
         try {
-            VuzixSpeechClient sc = new VuzixSpeechClient(iActivity);
+            sc = new VuzixSpeechClient(iActivity);
             // Delete specific phrases. This is useful if there are some that sound similar to yours, but
             // you want to keep the majority of them intact
             //sc.deletePhrase("go home");
@@ -54,9 +57,6 @@ public class VoiceCommandReceiver extends BroadcastReceiver {
                 Log.i(mMainActivity.LOG_TAG, "Setting voice off is not supported. It is introduced in M300 v1.6.6, Blade v2.6, and M400 v1.0.0");
             }
 
-            sc.insertPhrase("next", MATCH_NEXT);
-
-
             // See what we've done
             Log.i(mMainActivity.LOG_TAG, sc.dump());
 
@@ -77,8 +77,16 @@ public class VoiceCommandReceiver extends BroadcastReceiver {
         }
     }
 
-    public void registerCommand(String command) {
+    public void resetCommands() {
+        for (Commands command: Commands.values()) {
+            sc.deletePhrase(command.getCommand());
+        }
+    }
 
+    public void registerCommands(List<Commands> commands) {
+        for (Commands command: commands) {
+            sc.insertPhrase(command.getCommand());
+        }
     }
 
     @Override
@@ -92,9 +100,12 @@ public class VoiceCommandReceiver extends BroadcastReceiver {
                     String phrase = intent.getStringExtra(VuzixSpeechClient.PHRASE_STRING_EXTRA);
                     Log.e(mMainActivity.LOG_TAG, mMainActivity.getMethodName() + " \"" + phrase + "\"");
 
-                    if (phrase.equals(MATCH_NEXT)) {
-                        // todo: next fragment
-                    } else {
+                    if (phrase.equals(Commands.MATCH_START.getCommand())) {
+                        mMainActivity.loadFragment(new PackagingFragment());
+                    } else if (phrase.equals(Commands.MATCH_NEXT.getCommand())) {
+                        mMainActivity.loadFragment(new StartFragment());
+                    }
+                    else {
                         Log.e(mMainActivity.LOG_TAG, "Phrase not handled");
                     }
                 }

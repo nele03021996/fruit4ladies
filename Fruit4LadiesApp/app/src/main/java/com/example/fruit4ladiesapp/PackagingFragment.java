@@ -8,12 +8,15 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 
+import java.util.Arrays;
+import java.util.List;
+
 /**
  * A simple {@link Fragment} subclass.
  * Use the {@link PackagingFragment#newInstance} factory method to
  * create an instance of this fragment.
  */
-public class PackagingFragment extends Fragment {
+public class PackagingFragment extends Fruit4LadiesFragment {
 
     // TODO: Rename parameter arguments, choose names that match
     // the fragment initialization parameters, e.g. ARG_ITEM_NUMBER
@@ -60,5 +63,9 @@ public class PackagingFragment extends Fragment {
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
         return inflater.inflate(R.layout.fragment_packaging, container, false);
+    }
+
+    public List<Commands> getCommands() {
+        return Arrays.asList(Commands.MATCH_NEXT);
     }
 }
