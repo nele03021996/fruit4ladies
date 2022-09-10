@@ -13,6 +13,7 @@ import com.vuzix.sdk.speechrecognitionservice.VuzixSpeechClient;
 public class VoiceCommandReceiver extends BroadcastReceiver {
     private MainActivity mMainActivity;
     final String MATCH_NEXT = "next";
+    final String MATCH_BACK = "back";
 
     public VoiceCommandReceiver(MainActivity iActivity)
     {
@@ -55,6 +56,7 @@ public class VoiceCommandReceiver extends BroadcastReceiver {
             }
 
             sc.insertPhrase("next", MATCH_NEXT);
+            sc.insertPhrase("back", MATCH_BACK);
 
 
             // See what we've done
@@ -90,7 +92,11 @@ public class VoiceCommandReceiver extends BroadcastReceiver {
 
                     if (phrase.equals(MATCH_NEXT)) {
                         mMainActivity.goToItemsActivity();
-                    } else {
+                    }
+                    //else if (phrase.equals(MATCH_BACK)){
+                    //    mMainActivity.goBack();
+                    //}
+                    else {
                         Log.e(mMainActivity.LOG_TAG, "Phrase not handled");
                     }
                 }

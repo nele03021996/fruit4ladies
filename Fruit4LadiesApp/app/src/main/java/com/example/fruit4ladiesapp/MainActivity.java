@@ -15,7 +15,6 @@ public class MainActivity extends AppCompatActivity {
     public static final String EXTRA_MESSAGE = "com.example.fruit4ladiesapp.MESSAGE";
 
     VoiceCommandReceiver voiceCommandReceiver;
-    private boolean recognizerActive = false;
 
 
     @Override
@@ -35,9 +34,17 @@ public class MainActivity extends AppCompatActivity {
     }
     public void goToItemsActivity() {
         Intent intent = new Intent(this, Items.class);
-        intent.putExtra(EXTRA_MESSAGE, "test");
         startActivity(intent);
     }
+
+//    public void onBackClick(View view){
+//        goBack();
+//    }
+//
+//    public void goBack() {
+//        Intent intent = new Intent(this, MainActivity.class);
+//        startActivity(intent);
+//    }
 
     public String getMethodName() {
         return LOG_TAG + ":" + this.getClass().getSimpleName() + "." + new Throwable().getStackTrace()[1].getMethodName();
