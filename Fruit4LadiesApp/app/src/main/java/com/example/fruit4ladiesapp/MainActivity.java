@@ -4,12 +4,9 @@ import android.os.Bundle;
 import android.view.View;
 
 import androidx.appcompat.app.AppCompatActivity;
-import androidx.fragment.app.Fragment;
 import androidx.fragment.app.FragmentTransaction;
 
-import java.lang.reflect.Array;
 import java.util.Arrays;
-import java.util.List;
 
 public class MainActivity extends AppCompatActivity {
     public final String LOG_TAG = "VoiceSample";
@@ -31,7 +28,7 @@ public class MainActivity extends AppCompatActivity {
         return LOG_TAG + ":" + this.getClass().getSimpleName() + "." + new Throwable().getStackTrace()[1].getMethodName();
     }
 
-    public void next(View view) {
+    public void start(View view) {
         loadFragment(new PackagingFragment());
     }
 
