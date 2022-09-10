@@ -9,7 +9,9 @@
         android:id="@+id/button"
         android:layout_width="557dp"
         android:layout_height="288dp"
+        android:layout_gravity="center"
         android:onClick="next"
-        android:text="Start" />
+        android:text="Start"
+        android:textSize="48sp" />
 
 </FrameLayout>
