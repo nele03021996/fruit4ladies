@@ -6,7 +6,6 @@ import android.content.Intent;
 import android.content.IntentFilter;
 import android.os.Bundle;
 import android.util.Log;
-import android.view.KeyEvent;
 import android.widget.Toast;
 
 import com.vuzix.sdk.speechrecognitionservice.VuzixSpeechClient;
@@ -99,6 +98,20 @@ public class VoiceCommandReceiver extends BroadcastReceiver {
         }
         else {
             Log.e(mMainActivity.LOG_TAG, "Other Intent not handled " + intent.getAction() );
+        }
+    }
+
+    /**
+     * Handler called when "Listen" button is clicked. Activates the speech recognizer identically to
+     * saying "Hello Vuzix"
+     *
+     * @param bOnOrOff boolean True to enable listening, false to cancel it
+     */
+    public void TriggerRecognizerToListen(boolean bOnOrOff) {
+        try {
+            VuzixSpeechClient.TriggerVoiceAudio(mMainActivity, bOnOrOff);
+        } catch (NoClassDefFoundError e) {
+            Toast.makeText(mMainActivity, R.string.upgrade_vuzix, Toast.LENGTH_LONG).show();
         }
     }
 }

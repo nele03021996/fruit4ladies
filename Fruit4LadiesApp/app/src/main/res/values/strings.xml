@@ -2,4 +2,5 @@
     <string name="app_name">Fruit4LadiesApp</string>
     <string name="only_on_vuzix">Voice SDK only runs on Vuzix Smart Glasses w. Vuzix Speech SDK support</string>
     <string name="next">Next</string>
+    <string name="upgrade_vuzix">Please upgrade your Vuzix Smart Glasses to get all features</string>
 </resources>
