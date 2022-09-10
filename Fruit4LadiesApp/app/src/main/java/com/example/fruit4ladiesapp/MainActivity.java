@@ -9,6 +9,8 @@ import android.view.View;
 import com.vuzix.sdk.speechrecognitionservice.VuzixSpeechClient;
 
 public class MainActivity extends AppCompatActivity {
+    public final String LOG_TAG = "VoiceSample";
+    public final String CUSTOM_SDK_INTENT = "com.vuzix.sample.vuzix_voicecontrolwithsdk.CustomIntent";
     public static final String EXTRA_MESSAGE = "com.example.myfirstapp.MESSAGE";
     private boolean recognizerActive = false;
     VoiceCommandReceiver voiceCommandReceiver;
