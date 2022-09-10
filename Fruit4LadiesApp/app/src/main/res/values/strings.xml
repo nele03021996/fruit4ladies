@@ -3,4 +3,6 @@
     <string name="only_on_vuzix">Voice SDK only runs on Vuzix Smart Glasses w. Vuzix Speech SDK support</string>
     <string name="next">Next</string>
     <string name="upgrade_vuzix">Please upgrade your Vuzix Smart Glasses to get all features</string>
+    <!-- TODO: Remove or change this placeholder text -->
+    <string name="hello_blank_fragment">Hello blank fragment</string>
 </resources>

@@ -77,6 +77,10 @@ public class VoiceCommandReceiver extends BroadcastReceiver {
         }
     }
 
+    public void registerCommand(String command) {
+
+    }
+
     @Override
     public void onReceive(Context context, Intent intent) {
         Log.e(mMainActivity.LOG_TAG, mMainActivity.getMethodName());
