@@ -1,0 +1,40 @@
+{
+  "taskId": "CW28C2",
+  "customer": {
+    "id": 1,
+    "address": {
+      "Name": "Familie Schmidt",
+      "Street": "Marcel-Paul-Allee 32",
+      "City": "Buxtehude",
+      "ZipCode": "21614"
+    }
+  },
+  "packaging": {
+    "variant": "present-basket",
+    "basket-color": "green",
+    "paper-color": "white",
+    "message": "We are so happy for your new family luck. All the best for the mother and the newborn! \nYour friends from football",
+    "customer-comment": "wrap mango carefully."
+  },
+
+  "items": [
+    {
+      "name": "mango",
+      "bio": "demeter",
+      "barcode": "1234567894",
+      "amount": 1
+    },
+    {
+      "name": "pear",
+      "bio": "-",
+      "barcode": "1234567893",
+      "amount": 5
+    },
+    {
+      "name": "avocado",
+      "bio": "EU-Bio",
+      "barcode": "1234567892",
+      "amount": 2
+    }
+  ]
+}

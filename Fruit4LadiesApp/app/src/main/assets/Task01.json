@@ -1,0 +1,46 @@
+{
+  "taskId": "CW28C2",
+  "customer": {
+    "id": 1,
+    "address": {
+      "Name": "Mia Maus GmbH",
+      "Street": "Klarastrasse 2",
+      "City": "Berlin",
+      "ZipCode": "12345"
+    }
+  },
+  "packaging": {
+    "variant": "office-basket",
+    "basket-color": "red",
+    "paper-color": "yellow",
+    "message": "have a great office day!",
+    "customer-comment": "please take the large pears"
+  },
+
+  "items": [
+    {
+      "name": "orange",
+      "bio": "demeter",
+      "barcode": "1234567891",
+      "amount": 2
+    },
+    {
+      "name": "avocado",
+      "bio": "EU-Bio",
+      "barcode": "1234567892",
+      "amount": 1
+    },
+    {
+      "name": "pear",
+      "bio": "-",
+      "barcode": "1234567893",
+      "amount": 5
+    },
+    {
+      "name": "mango",
+      "barcode": "1234567894",
+      "bio": "demeter",
+      "amount": 3
+    }
+  ]
+}
