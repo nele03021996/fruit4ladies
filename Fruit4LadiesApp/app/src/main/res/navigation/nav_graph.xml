@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="utf-8"?>
+<navigation xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/nav_graph"
+    app:startDestination="@id/startFragment2">
+    <fragment
+        android:id="@+id/startFragment2"
+        android:name="com.example.fruit4ladiesapp.StartFragment"
+        android:label="fragment_start"
+        tools:layout="@layout/fragment_start" >
+        <action
+            android:id="@+id/action_startFragment2_to_packagingFragment2"
+            app:destination="@id/packagingFragment2" />
+    </fragment>
+    <fragment
+        android:id="@+id/packagingFragment2"
+        android:name="com.example.fruit4ladiesapp.PackagingFragment"
+        android:label="fragment_packaging"
+        tools:layout="@layout/fragment_packaging" >
+        <action
+            android:id="@+id/action_packagingFragment2_to_itemFragment"
+            app:destination="@id/itemFragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/itemFragment"
+        android:name="com.example.fruit4ladiesapp.ItemFragment"
+        android:label="fragment_item"
+        tools:layout="@layout/fragment_item" />
+</navigation>

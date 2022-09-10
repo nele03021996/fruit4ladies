@@ -4,7 +4,9 @@ import android.os.Bundle;
 import android.view.View;
 
 import androidx.appcompat.app.AppCompatActivity;
-import androidx.fragment.app.FragmentTransaction;
+import androidx.fragment.app.FragmentManager;
+import androidx.navigation.NavController;
+import androidx.navigation.fragment.NavHostFragment;
 
 import java.util.Arrays;
 
@@ -40,12 +42,16 @@ public class MainActivity extends AppCompatActivity {
         voiceCommandReceiver.resetCommands();
         voiceCommandReceiver.registerCommands(fragment.getCommands());
 
-        // Begin the transaction
-        FragmentTransaction ft = getSupportFragmentManager().beginTransaction();
-        // Replace the contents of the container with the new fragment
-        ft.replace(R.id.fragment_container_view, fragment);
-        // or ft.add(R.id.your_placeholder, new FooFragment());
-        // Complete the changes added above
-        ft.commit();
+        FragmentManager supportedFragmentManager = getSupportFragmentManager();
+        NavHostFragment navHostFragment =
+                (NavHostFragment) supportedFragmentManager.findFragmentById(R.id.nav_host_fragment);
+        NavController navController = navHostFragment.getNavController();
+
+// OLD
+//        FragmentTransaction ft = supportedFragmentManager.beginTransaction();
+//        // Replace the contents of the container with the new fragment
+//        ft.replace(R.id.nav_host_fragment, fragment);
+//        // or ft.add(R.id.your_placeholder, new FooFragment());
+//        ft.commit();
     }
 }
