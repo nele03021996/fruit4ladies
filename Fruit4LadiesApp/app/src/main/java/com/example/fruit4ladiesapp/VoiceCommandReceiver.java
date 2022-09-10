@@ -98,13 +98,19 @@ public class VoiceCommandReceiver extends BroadcastReceiver {
             if (extras != null) {
                 if (extras.containsKey(VuzixSpeechClient.PHRASE_STRING_EXTRA)) {
                     String phrase = intent.getStringExtra(VuzixSpeechClient.PHRASE_STRING_EXTRA);
-                    Log.e(mMainActivity.LOG_TAG, mMainActivity.getMethodName() + " \"" + phrase + "\"");
+//                    Log.e(mMainActivity.LOG_TAG, mMainActivity.getMethodName() + " \"" + phrase + "\"");
+//                    Log.e(mMainActivity.LOG_TAG, Commands.getAllCommands() + "");
 
-                    if (phrase.equals(Commands.MATCH_START.getCommand())) {
-                        mMainActivity.loadFragment(new PackagingFragment());
-                    } else if (phrase.equals(Commands.MATCH_NEXT.getCommand())) {
-                        mMainActivity.loadFragment(new StartFragment());
+                    if (Commands.getAllCommands().contains(phrase)) {
+                        mMainActivity.navigate();
                     }
+//
+//
+//                    if (phrase.equals(Commands.MATCH_START.getCommand())) {
+//                        mMainActivity.loadFragment(new PackagingFragment());
+//                    } else if (phrase.equals(Commands.MATCH_NEXT.getCommand())) {
+//                        mMainActivity.loadFragment(new StartFragment());
+//                    }
                     else {
                         Log.e(mMainActivity.LOG_TAG, "Phrase not handled");
                     }

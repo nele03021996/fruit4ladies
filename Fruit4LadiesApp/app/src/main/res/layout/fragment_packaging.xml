@@ -22,20 +22,21 @@
 
             <ImageView
                 android:id="@+id/imageView"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
+                android:layout_width="132dp"
+                android:layout_height="132dp"
                 android:layout_marginRight="16dp"
                 android:src="@drawable/office_basket_green" />
 
             <ImageView
                 android:id="@+id/imageView2"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
+                android:layout_width="132dp"
+                android:layout_height="132dp"
                 android:layout_marginLeft="16dp"
                 android:src="@drawable/present_basket_yellow" />
         </LinearLayout>
 
         <TextView
+            android:id="@+id/commentView"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:layout_weight="1"
@@ -51,9 +52,10 @@
             android:layout_marginRight="8dp"
             android:layout_marginBottom="8dp">
             <TextView
+                android:id="@+id/taskView"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="Task: 1234"
+                android:text="Task"
                 android:textSize="28sp"
                 app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintStart_toStartOf="parent"

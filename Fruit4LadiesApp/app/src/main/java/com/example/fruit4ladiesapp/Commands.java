@@ -1,5 +1,9 @@
 package com.example.fruit4ladiesapp;
 
+import java.util.List;
+import java.util.stream.Collectors;
+import java.util.stream.Stream;
+
 public enum Commands {
 
     MATCH_NEXT("next"),
@@ -13,5 +17,11 @@ public enum Commands {
 
     public String getCommand() {
         return command;
+    }
+
+    public static List<String> getAllCommands() {
+        return Stream.of(Commands.values())
+                .map(item -> item.getCommand())
+                .collect(Collectors.toList());
     }
 }
