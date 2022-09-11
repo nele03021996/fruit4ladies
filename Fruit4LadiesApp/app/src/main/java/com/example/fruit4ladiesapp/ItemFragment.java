@@ -1,9 +1,11 @@
 package com.example.fruit4ladiesapp;
 
+import android.graphics.drawable.Drawable;
 import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.ImageView;
 import android.widget.TextView;
 
 import androidx.annotation.NonNull;
@@ -32,6 +34,13 @@ public class ItemFragment extends Fruit4LadiesFragment {
         taskView.setText("Task ID: "+viewModel.getCurrentOrder().getValue().id);
         TextView amountView = (TextView) view.findViewById(R.id.fruitAmountView);
         amountView.setText(""+viewModel.getCurrentItem().getValue().getAmount());
+        ImageView fruitView = (ImageView) view.findViewById(R.id.imageViewItems);
+        if(viewModel.getCurrentItem().getValue().getName() == "orange"){
+            fruitView.setImageResource(R.drawable.orange);
+        }
+        else{
+            fruitView.setImageResource(R.drawable.apple);
+        }
 
     }
 
