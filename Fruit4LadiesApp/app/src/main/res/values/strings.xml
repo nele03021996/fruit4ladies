@@ -4,6 +4,7 @@
     <string name="start">Start</string>
     <string name="next">Next</string>
     <string name="upgrade_vuzix">Please upgrade your Vuzix Smart Glasses to get all features</string>
+    <string name="comment">No green apples please</string>
     <!-- TODO: Remove or change this placeholder text -->
     <string name="hello_blank_fragment">Hello blank fragment</string>
 </resources>
